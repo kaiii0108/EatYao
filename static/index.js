@@ -4,12 +4,12 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
     function getJsonI18N() {
         // https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/language
         
-        const LANGUAGES = [
-            { regex: /^zh-tw\b/, lang: 'zh-tw' },
-            { regex: /^zh\b/, lang: 'zh' },
-            { regex: /^ja\b/, lang: 'ja' },
-            { regex: /.*/, lang: 'en'}
-        ]
+const LANGUAGES = [
+    { regex: /^zh-tw/i, lang: 'zh-tw' },  // 先匹配 zh-tw，避免被 zh 捕獲
+    { regex: /^zh/i, lang: 'zh' },        // zh-cn, zh-sg 也能匹配
+    { regex: /^ja/i, lang: 'ja' },        // ja, ja-jp
+    { regex: /.*/, lang: 'en' }           // 預設為英文
+];
 
         const lang = LANGUAGES.find(l => l.regex.test(navigator.language)).lang
         
